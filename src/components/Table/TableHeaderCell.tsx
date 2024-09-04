@@ -6,6 +6,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 
 import { setSorting } from '../../features/sorting/sortingSlice';
 import * as t from '../../types';
+import Input from '../Input';
 
 interface TableHeaderCellProps {
     cellData: t.HeaderCell;
@@ -83,7 +84,7 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
                 </StyledButtonContainer>
             </StyledHeader>
             <hr />
-            {filter && <p>Input</p>}
+            {filter && <Input filterKey={field} placeholder={`Search for ${title}`} />}
         </StyledTableHeader>
     );
 }

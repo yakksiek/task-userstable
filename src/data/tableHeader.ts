@@ -2,11 +2,6 @@ import * as t from '../types';
 
 export const userTableHeadersConfig: t.HeaderCell[] = [
     {
-        title: 'id',
-        field: 'id',
-        filter: false,
-    },
-    {
         title: 'Name',
         field: 'name',
         filter: true,
@@ -19,6 +14,11 @@ export const userTableHeadersConfig: t.HeaderCell[] = [
     {
         title: 'E-mail',
         field: 'email',
+        filter: true,
+    },
+    {
+        title: 'Phone number',
+        field: 'phone',
         filter: true,
     },
 ];

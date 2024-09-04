@@ -28,4 +28,4 @@ export interface User {
     company: Company;
 }
 
-export type SimpleUser = Pick<User, 'name' | 'username' | 'email' | 'id'>;
+export type SimpleUser = Pick<User, 'name' | 'username' | 'email' | 'phone'>;
