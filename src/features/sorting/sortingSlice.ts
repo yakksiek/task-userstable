@@ -17,8 +17,15 @@ const sortingSlice = createSlice({
     initialState,
     reducers: {
         setSorting: (state, action: PayloadAction<StateSorting>) => {
-            state.column = action.payload.column;
-            state.order = action.payload.order;
+            const { column: newColumn, order: newOrder } = action.payload;
+
+            if (newColumn === state.column) {
+                state.order = newOrder;
+            } else {
+                state.order = 'asc';
+            }
+
+            state.column = newColumn;
         },
     },
 });

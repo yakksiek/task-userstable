@@ -3,6 +3,7 @@ import * as t from '../../types';
 import Heading from '../Heading';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 interface TableProps {
     tableContent: t.User[];
@@ -29,6 +30,11 @@ const StyledTable = styled.table`
 `;
 
 function Table({ tableContent, headerData, title }: TableProps) {
+    const { column: sortingColumn, order: sortingOrder } = useAppSelector(store => store.sorting);
+
+    console.log(sortingColumn);
+    console.log(sortingOrder);
+
     return (
         <div>
             {title && (
