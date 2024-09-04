@@ -1,6 +1,6 @@
 import * as t from '../types';
 
-export const columns: t.HeaderCell[] = [
+export const userTableHeadersConfig: t.HeaderCell[] = [
     {
         title: 'id',
         field: 'id',
