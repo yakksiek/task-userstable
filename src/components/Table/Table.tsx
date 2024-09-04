@@ -4,25 +4,44 @@ import Heading from '../Heading';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
-interface TableProps<T> {
-    tableContent: T[];
+interface TableProps {
+    tableContent: t.User[];
     headerData: t.HeaderCell[];
     title?: string;
 }
 
+const StyledScrollableContainer = styled.div`
+    overflow-x: auto;
+    margin-top: 1rem;
+    padding: 0 1rem;
+`;
+
 const StyledTable = styled.table`
     width: 100%;
     border-collapse: collapse;
+
+    td,
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+        padding: 8px;
+    }
 `;
 
-function Table<T>({ tableContent, headerData, title }: TableProps<T>) {
+function Table({ tableContent, headerData, title }: TableProps) {
     return (
         <div>
-            {title && <Heading as='h2'>{title}</Heading>}
-            <StyledTable>
-                <TableHeader headerData={headerData} />
-                <TableBody bodyData={tableContent} />
-            </StyledTable>
+            {title && (
+                <Heading as='h2' $marginBottom={true}>
+                    {title}
+                </Heading>
+            )}
+            <StyledScrollableContainer>
+                <StyledTable>
+                    <TableHeader headerData={headerData} />
+                    <TableBody bodyData={tableContent} headerData={headerData} />
+                </StyledTable>
+            </StyledScrollableContainer>
         </div>
     );
 }
