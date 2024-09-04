@@ -1,8 +1,8 @@
 import Table from './components/Table';
 
-import users from './data/users';
-import { userTableHeadersConfig } from './data/tableHeader';
 import { styled } from 'styled-components';
+import { userTableHeadersConfig } from './data/tableHeader';
+import { useAppSelector } from './hooks/reduxHooks';
 
 const StyledAppLayout = styled.div`
     max-width: 1300px;
@@ -10,9 +10,11 @@ const StyledAppLayout = styled.div`
 `;
 
 function App() {
+    const { userList } = useAppSelector(state => state.usersData);
+
     return (
         <StyledAppLayout>
-            <Table tableContent={users} headerData={userTableHeadersConfig} title='User list' />
+            <Table tableContent={userList} headerData={userTableHeadersConfig} title='User list' />
         </StyledAppLayout>
     );
 }

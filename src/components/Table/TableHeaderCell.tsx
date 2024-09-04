@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { styled } from 'styled-components';
 import { TbSortAscending, TbSortDescending } from 'react-icons/tb';
+import { useDispatch } from 'react-redux';
+import { styled } from 'styled-components';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
+import { setSorting } from '../../features/sorting/sortingSlice';
 import * as t from '../../types';
 
 interface TableHeaderCellProps {
@@ -35,9 +38,14 @@ const StyledHeader = styled.header`
 `;
 
 function TableHeaderCell({ cellData }: TableHeaderCellProps) {
-    const [showSort, setShowSort] = useState(false);
-
     const { field, title, filter } = cellData;
+    const sorting = useAppSelector(state => state.sorting);
+    const [showSort, setShowSort] = useState(false);
+    const dispatch = useDispatch();
+
+    const isDescSorting = sorting.column === field && sorting.order === 'desc';
+    const isAscSorting = sorting.column === field && sorting.order === 'asc';
+    const futureSortingOrder = isDescSorting ? 'asc' : 'desc';
 
     const handleMouseOver = () => {
         setShowSort(true);
@@ -47,12 +55,27 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
         setShowSort(false);
     };
 
+    const handleSort = () => {
+        dispatch(setSorting({ column: field, order: futureSortingOrder }));
+    };
+
     return (
         <StyledTableHeader>
-            <StyledHeader onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+            <StyledHeader onClick={handleSort} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                 <span>{title}</span>
                 <StyledButtonContainer>
-                    {showSort && (
+                    {isDescSorting && (
+                        <StyledSortButton>
+                            <TbSortAscending color='rgb(195 154 100)' />
+                        </StyledSortButton>
+                    )}
+                    {isAscSorting && (
+                        <StyledSortButton>
+                            <TbSortDescending color='rgb(195 154 100)' />
+                        </StyledSortButton>
+                    )}
+
+                    {showSort && !isAscSorting && !isDescSorting && (
                         <StyledSortButton>
                             <TbSortDescending color='white' />
                         </StyledSortButton>
