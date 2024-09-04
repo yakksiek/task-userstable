@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import * as t from '../../types';
 import Heading from '../Heading';
+import TableHeader from './TableHeader';
 
 interface TableProps<T> {
     tableContent: T[];
@@ -17,7 +18,9 @@ function Table<T>({ tableContent, headerData, title }: TableProps<T>) {
     return (
         <div>
             {title && <Heading as='h2'>{title}</Heading>}
-            <StyledTable></StyledTable>
+            <StyledTable>
+                <TableHeader headerData={headerData} />
+            </StyledTable>
         </div>
     );
 }
