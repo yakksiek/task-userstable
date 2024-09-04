@@ -1,9 +1,11 @@
 import { styled } from 'styled-components';
 import * as t from '../../types';
+import * as h from '../../helpers';
 import Heading from '../Heading';
 import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 import { useAppSelector } from '../../hooks/reduxHooks';
+import { useMemo } from 'react';
 
 interface TableProps {
     tableContent: t.User[];
@@ -32,8 +34,9 @@ const StyledTable = styled.table`
 function Table({ tableContent, headerData, title }: TableProps) {
     const { column: sortingColumn, order: sortingOrder } = useAppSelector(store => store.sorting);
 
-    console.log(sortingColumn);
-    console.log(sortingOrder);
+    const sortedUsers = useMemo(() => {
+        return h.sortItems(tableContent, sortingColumn, sortingOrder);
+    }, [tableContent, sortingColumn, sortingOrder]);
 
     return (
         <div>
@@ -45,7 +48,7 @@ function Table({ tableContent, headerData, title }: TableProps) {
             <StyledScrollableContainer>
                 <StyledTable>
                     <TableHeader headerData={headerData} />
-                    <TableBody bodyData={tableContent} headerData={headerData} />
+                    <TableBody bodyData={sortedUsers} headerData={headerData} />
                 </StyledTable>
             </StyledScrollableContainer>
         </div>
