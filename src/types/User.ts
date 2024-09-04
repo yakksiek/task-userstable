@@ -17,7 +17,7 @@ interface Company {
     bs: string;
 }
 
-export default interface User {
+export interface User {
     id: number;
     name: string;
     username: string;
@@ -27,3 +27,5 @@ export default interface User {
     website: string;
     company: Company;
 }
+
+export type SimpleUser = Pick<User, 'name' | 'username' | 'email' | 'id'>;

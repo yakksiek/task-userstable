@@ -1,7 +1,7 @@
-import User from './User';
+import { SimpleUser } from './User';
 
 export default interface HeaderCell {
     title: string;
-    field: keyof User;
+    field: keyof SimpleUser;
     filter: boolean;
 }
