@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import * as t from '../../types';
 import Heading from '../Heading';
 import TableHeader from './TableHeader';
+import TableBody from './TableBody';
 
 interface TableProps<T> {
     tableContent: T[];
@@ -20,6 +21,7 @@ function Table<T>({ tableContent, headerData, title }: TableProps<T>) {
             {title && <Heading as='h2'>{title}</Heading>}
             <StyledTable>
                 <TableHeader headerData={headerData} />
+                <TableBody bodyData={tableContent} />
             </StyledTable>
         </div>
     );

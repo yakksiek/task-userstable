@@ -8,18 +8,13 @@ export const userTableHeadersConfig: t.HeaderCell[] = [
     },
     {
         title: 'Name',
-        field: 'firstName',
+        field: 'name',
         filter: true,
     },
     {
         title: 'Username',
         field: 'username',
         filter: true,
-    },
-    {
-        title: 'Age',
-        field: 'age',
-        filter: false,
     },
     {
         title: 'E-mail',
