@@ -8,7 +8,7 @@ interface StateSorting {
 }
 
 const initialState: StateSorting = {
-    column: 'id',
+    column: 'name',
     order: 'asc',
 };
 

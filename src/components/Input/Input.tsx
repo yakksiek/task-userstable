@@ -5,11 +5,11 @@ import * as t from '../../types';
 import { setPage } from '../../features/users/usersSlice';
 
 const StyledInput = styled.input`
-    background-color: transparent;
-    border: 1px solid var(--font-color-main);
+    background-color: var(--background-color-main-2);
+    border: 1px solid var(--background-color-main-2);
     min-height: 2rem;
     width: 100%;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     padding: 0.5rem;
     color: var(--font-color-accent);
     outline: none;
