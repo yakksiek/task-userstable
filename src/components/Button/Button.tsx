@@ -26,8 +26,6 @@ const StyledButton = styled.button`
 `;
 
 function Button({ clickHandler, children, disabled = false }: ButtonProps) {
-    console.log(disabled);
-
     return (
         <StyledButton onClick={clickHandler} disabled={disabled}>
             {children}
