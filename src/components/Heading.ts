@@ -19,13 +19,11 @@ const Heading = styled.h1<HeadingProps>`
         props.as === 'h1' &&
         css`
             font-size: 2rem;
-            letter-spacing: 2.5px;
         `}
     ${props =>
         props.as === 'h2' &&
         css`
             font-size: 2rem;
-            letter-spacing: 2.5px;
         `}
       
         ${props =>
