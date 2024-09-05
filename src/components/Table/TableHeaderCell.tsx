@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { TbSortAscending, TbSortDescending } from 'react-icons/tb';
+import { IoMdArrowRoundUp, IoMdArrowRoundDown } from 'react-icons/io';
+
 import { useDispatch } from 'react-redux';
 import { styled } from 'styled-components';
 import { useAppSelector } from '../../hooks/reduxHooks';
@@ -18,10 +19,15 @@ const StyledTableHeader = styled.th`
 `;
 
 const StyledSortButton = styled.button`
-    font-size: 1.5rem;
+    font-size: 1rem;
     border: none;
     background-color: transparent;
+    color: var(--font-color-accent);
     cursor: pointer;
+
+    &.active {
+        color: var(--font-color-main);
+    }
 `;
 
 const StyledButtonContainer = styled.div`
@@ -67,19 +73,19 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
                 <span>{title}</span>
                 <StyledButtonContainer>
                     {isDescSorting && (
-                        <StyledSortButton>
-                            <TbSortAscending color='rgb(195 154 100)' />
+                        <StyledSortButton className='active'>
+                            <IoMdArrowRoundUp />
                         </StyledSortButton>
                     )}
                     {isAscSorting && (
-                        <StyledSortButton>
-                            <TbSortDescending color='rgb(195 154 100)' />
+                        <StyledSortButton className='active'>
+                            <IoMdArrowRoundDown />
                         </StyledSortButton>
                     )}
 
                     {showSort && !isAscSorting && !isDescSorting && (
                         <StyledSortButton>
-                            <TbSortDescending />
+                            <IoMdArrowRoundDown />
                         </StyledSortButton>
                     )}
                 </StyledButtonContainer>
