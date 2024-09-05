@@ -9,13 +9,16 @@ import { fetchUsers } from './features/users/usersSlice';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 
 const StyledAppLayout = styled.div`
-    max-width: 1300px;
-    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    height: 100vh;
+    padding: 0 1rem;
+
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    height: 100dvh;
-    padding: 0 1rem;
+    flex-direction: column; */
 `;
 
 function App() {

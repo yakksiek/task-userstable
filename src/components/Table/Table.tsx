@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import * as h from '../../helpers';
 import * as t from '../../types';
 import Heading from '../Heading';
-import { StyledScrollableContainer, StyledTable } from './Table.styled';
+import { StyledScrollableContainer, StyledTable, StyledTableWrapper } from './Table.styled';
 import TableBody from './TableBody';
 import TableHeader from './TableHeader';
 import Pagination from '../Pagination';
@@ -44,7 +44,7 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
     });
 
     return (
-        <div>
+        <StyledTableWrapper>
             {title && (
                 <Heading as='h2' $marginBottom={true} $textAlign='left'>
                     {title}
@@ -63,7 +63,7 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
                 onPreviousPage={handlePreviousPage}
                 setPageHandler={handlePageChange}
             />
-        </div>
+        </StyledTableWrapper>
     );
 }
 

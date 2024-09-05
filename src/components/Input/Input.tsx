@@ -13,7 +13,7 @@ const StyledInput = styled.input`
     padding: 0.5rem;
     color: var(--font-color-accent);
     outline: none;
-    border-radius: 0.5rem;
+    border-radius: var(--border-radius-outer);
 
     &:focus {
         border-color: var(--font-color-accent);

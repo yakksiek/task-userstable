@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
     --font-color-main: rgb(0, 0, 0);
     --font-color-accent: rgb(130, 130, 130);
 
-    --border-radius-outer: 0.25rem;
+    --border-radius-outer: 0.5rem;
     --border: 1.25px solid var(--background-color-main-2)
 }
 
@@ -24,7 +24,7 @@ body {
         'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--background-color-main); 
+    background-color: var(--background-color-main-2); 
     color: var(--font-color-main);
 }
 
