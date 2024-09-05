@@ -7,18 +7,20 @@ import Spinner from './components/Spinner';
 import { userTableHeadersConfig } from './data/tableHeader';
 import { fetchUsers } from './features/users/usersSlice';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
+import { device } from './styles/breakPoints';
 
 const StyledAppLayout = styled.div`
     max-width: 1400px;
-    margin: 0 auto;
 
-    height: 100vh;
-    padding: 0 1rem;
-
-    /* display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; */
+    @media ${device.tablet} {
+        height: 100vh;
+        margin: 1rem auto;
+        padding: 0 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
 function App() {

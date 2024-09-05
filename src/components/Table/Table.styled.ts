@@ -14,8 +14,12 @@ export const StyledScrollableContainer = styled.div`
 `;
 
 export const StyledTable = styled.table`
-    min-width: 800px;
+    width: 100%;
     border-collapse: collapse;
+
+    td {
+        min-width: 200px;
+    }
 
     td,
     th {
