@@ -7,7 +7,7 @@ interface TableHeaderProps {
 }
 
 const StyledTableHeader = styled.thead`
-    border-bottom: 1.25px solid var(--background-color-main-2);
+    border-bottom: var(--border);
 `;
 
 function TableHeader({ headerData }: TableHeaderProps) {

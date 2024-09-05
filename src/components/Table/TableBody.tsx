@@ -8,6 +8,15 @@ interface TableBodyProps {
 
 const StyledTableRow = styled.tr`
     height: 3.5rem;
+    transition: background-color 0.3s ease;
+
+    &:not(:last-child) {
+        border-bottom: var(--border);
+    }
+
+    &:hover {
+        background-color: var(--background-color-main-2);
+    }
 `;
 
 function TableBody({ bodyData, headerData }: TableBodyProps) {

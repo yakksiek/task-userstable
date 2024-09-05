@@ -8,6 +8,7 @@ const GlobalStyles = createGlobalStyle`
     --font-color-accent: rgb(130, 130, 130);
 
     --border-radius-outer: 0.25rem;
+    --border: 1.25px solid var(--background-color-main-2)
 }
 
 *,
