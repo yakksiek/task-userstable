@@ -13,3 +13,18 @@ export const sortItems = <T>(items: T[], key: keyof T, order: 'asc' | 'desc' = '
         return 0;
     });
 };
+
+export function filterItems<T>(items: T[], filters: Partial<Record<keyof T, string>>): T[] {
+    return items.filter(item => {
+        for (const key of Object.keys(filters)) {
+            const filterKey = key as keyof T;
+            const filterValue = filters[filterKey]?.toLowerCase();
+            const itemValue = item[filterKey]?.toString().toLowerCase() || '';
+
+            if (filterValue && !itemValue.includes(filterValue)) {
+                return false;
+            }
+        }
+        return true;
+    });
+}

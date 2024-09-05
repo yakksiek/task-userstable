@@ -16,10 +16,15 @@ interface TableProps {
 
 function Table({ tableContent, headerData, title }: TableProps) {
     const { column: sortingColumn, order: sortingOrder } = useAppSelector(store => store.sorting);
+    const filters = useAppSelector(store => store.filters);
+
+    const filteredUsers = useMemo(() => {
+        return h.filterItems(tableContent, filters);
+    }, [tableContent, filters]);
 
     const sortedUsers = useMemo(() => {
-        return h.sortItems(tableContent, sortingColumn, sortingOrder);
-    }, [tableContent, sortingColumn, sortingOrder]);
+        return h.sortItems(filteredUsers, sortingColumn, sortingOrder);
+    }, [filteredUsers, tableContent, sortingColumn, sortingOrder]);
 
     return (
         <div>

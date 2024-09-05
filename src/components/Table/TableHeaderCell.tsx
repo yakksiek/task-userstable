@@ -84,7 +84,7 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
                 </StyledButtonContainer>
             </StyledHeader>
             <hr />
-            {filter && <Input filterKey={field} placeholder={`Search for ${title}`} />}
+            {filter && <Input filterKey={field} placeholder={`Filter for ${title}`} />}
         </StyledTableHeader>
     );
 }
