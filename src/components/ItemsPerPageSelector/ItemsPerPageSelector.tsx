@@ -4,11 +4,22 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 
 const ITEMS_PER_PAGE_OPTIONS = [3, 5, 10];
 
+const StyledWrapper = styled.div`
+    color: var(--font-color-accent);
+`;
+
 const StyledSelect = styled.select`
     border: 1px solid var(--font-color-accent);
     border-radius: 100vh;
     background-color: transparent;
     color: var(--font-color-accent);
+    transition: olor 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: var(--font-color-main);
+        border-color: var(--font-color-main);
+    }
 `;
 
 const ItemsPerPageSelector = () => {
@@ -20,7 +31,7 @@ const ItemsPerPageSelector = () => {
     };
 
     return (
-        <div>
+        <StyledWrapper>
             <label htmlFor='itemsPerPage'>Items per page: </label>
             <StyledSelect id='itemsPerPage' value={itemsPerPage} onChange={handleChange}>
                 {ITEMS_PER_PAGE_OPTIONS.map(optionItem => (
@@ -29,7 +40,7 @@ const ItemsPerPageSelector = () => {
                     </option>
                 ))}
             </StyledSelect>
-        </div>
+        </StyledWrapper>
     );
 };
 

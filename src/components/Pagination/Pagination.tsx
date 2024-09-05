@@ -30,6 +30,10 @@ const StyledActionButtonsContainer = styled.div`
     gap: 0.25rem;
 `;
 
+const StyledPageInformation = styled.span`
+    color: var(--font-color-accent);
+`;
+
 function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPageHandler }: PaginationProps) {
     const buttons = [
         {
@@ -63,9 +67,9 @@ function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPa
                     </PaginationButton>
                 ))}
             </StyledActionButtonsContainer>
-            <span>
+            <StyledPageInformation>
                 Page {currentPage} of {totalPages}
-            </span>
+            </StyledPageInformation>
             <ItemsPerPageSelector />
         </StyledPaginationContainer>
     );
