@@ -17,37 +17,55 @@ const StyledPaginationContainer = styled.div`
     display: flex;
     align-items: center;
     min-height: 2rem;
-    margin-top: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 0.5rem;
     justify-content: space-between;
-
     font-size: 0.875rem;
+    border-top: var(--border);
 `;
 
 const StyledActionButtonsContainer = styled.div`
     display: flex;
+    align-items: center;
     gap: 0.25rem;
 `;
 
 function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPageHandler }: PaginationProps) {
+    const buttons = [
+        {
+            onClick: () => setPageHandler(1),
+            disabled: currentPage === 1,
+            icon: <MdOutlineFirstPage />,
+        },
+        {
+            onClick: onPreviousPage,
+            disabled: currentPage === 1,
+            icon: <GrFormPrevious />,
+        },
+        {
+            onClick: onNextPage,
+            disabled: currentPage === totalPages,
+            icon: <GrFormNext />,
+        },
+        {
+            onClick: () => setPageHandler(totalPages),
+            disabled: currentPage === totalPages,
+            icon: <MdOutlineLastPage />,
+        },
+    ];
+
     return (
         <StyledPaginationContainer>
             <StyledActionButtonsContainer>
-                <PaginationButton onClick={() => setPageHandler(1)} disabled={currentPage === 1}>
-                    <MdOutlineFirstPage />
-                </PaginationButton>
-                <PaginationButton onClick={onPreviousPage} disabled={currentPage === 1}>
-                    <GrFormPrevious />
-                </PaginationButton>
-                <span>
-                    Page {currentPage} of {totalPages}
-                </span>
-                <PaginationButton onClick={onNextPage} disabled={currentPage === totalPages}>
-                    <GrFormNext />
-                </PaginationButton>
-                <PaginationButton onClick={() => setPageHandler(totalPages)} disabled={currentPage === totalPages}>
-                    <MdOutlineLastPage />
-                </PaginationButton>
+                {buttons.map((button, index) => (
+                    <PaginationButton key={index} onClick={button.onClick} disabled={button.disabled}>
+                        {button.icon}
+                    </PaginationButton>
+                ))}
             </StyledActionButtonsContainer>
+            <span>
+                Page {currentPage} of {totalPages}
+            </span>
             <ItemsPerPageSelector />
         </StyledPaginationContainer>
     );

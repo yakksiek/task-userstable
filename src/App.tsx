@@ -18,7 +18,6 @@ const StyledAppLayout = styled.div`
         padding: 0 1rem;
         display: flex;
         justify-content: center;
-        align-items: center;
         flex-direction: column;
     }
 `;
