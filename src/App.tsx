@@ -1,20 +1,39 @@
+import { useEffect } from 'react';
 import Table from './components/Table';
 
 import { styled } from 'styled-components';
+import Error from './components/Error';
+import Spinner from './components/Spinner';
 import { userTableHeadersConfig } from './data/tableHeader';
-import { useAppSelector } from './hooks/reduxHooks';
+import { fetchUsers } from './features/users/usersSlice';
+import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 
 const StyledAppLayout = styled.div`
     max-width: 1300px;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100dvh;
 `;
 
 function App() {
-    const { userList } = useAppSelector(state => state.usersData);
+    const { userList, error, fetching } = useAppSelector(state => state.usersData);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
 
     return (
         <StyledAppLayout>
-            <Table tableContent={userList} headerData={userTableHeadersConfig} title='User list' />
+            {fetching && <Spinner />}
+            {error && !fetching && (
+                <Error errorMessage={error} onClick={() => dispatch(fetchUsers())} disableErrorBtn={fetching} />
+            )}
+            {!fetching && !error && (
+                <Table tableContent={userList} headerData={userTableHeadersConfig} title='User list' />
+            )}
         </StyledAppLayout>
     );
 }
