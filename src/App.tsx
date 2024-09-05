@@ -15,10 +15,11 @@ const StyledAppLayout = styled.div`
     align-items: center;
     flex-direction: column;
     height: 100dvh;
+    padding: 0 1rem;
 `;
 
 function App() {
-    const { userList, error, fetching } = useAppSelector(state => state.usersData);
+    const { userList, error, fetching, currentPage, itemsPerPage } = useAppSelector(state => state.usersData);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -32,7 +33,13 @@ function App() {
                 <Error errorMessage={error} onClick={() => dispatch(fetchUsers())} disableErrorBtn={fetching} />
             )}
             {!fetching && !error && (
-                <Table tableContent={userList} headerData={userTableHeadersConfig} title='User list' />
+                <Table
+                    tableContent={userList}
+                    headerData={userTableHeadersConfig}
+                    title='User list'
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                />
             )}
         </StyledAppLayout>
     );

@@ -8,13 +8,21 @@ interface ErrorProps {
     disableErrorBtn?: boolean;
 }
 
+const SectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+`;
+
 const StyledParagraphMessage = styled.p`
     margin-bottom: 0.5rem;
 `;
 
 function Error({ errorMessage, onClick, disableErrorBtn = false }: ErrorProps) {
     return (
-        <div>
+        <SectionContainer>
             <Heading as='h1' $marginBottom={true}>
                 {errorMessage}
             </Heading>
@@ -22,7 +30,7 @@ function Error({ errorMessage, onClick, disableErrorBtn = false }: ErrorProps) {
             <Button clickHandler={onClick} disabled={disableErrorBtn}>
                 Try my luck
             </Button>
-        </div>
+        </SectionContainer>
     );
 }
 

@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { setFilter } from '../../features/filters/filtersSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import * as t from '../../types';
+import { setPage } from '../../features/users/usersSlice';
 
 const StyledInput = styled.input`
     background-color: transparent;
@@ -30,6 +31,7 @@ function Input({ filterKey, placeholder }: InputProps) {
 
     function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
         dispatch(setFilter({ query: e.target.value, filterKey }));
+        dispatch(setPage(1));
     }
 
     return <StyledInput type='text' placeholder={placeholder} onChange={handleInputChange} value={value} />;

@@ -7,12 +7,16 @@ interface StateUsers {
     userList: t.User[];
     fetching: boolean;
     error: string | null;
+    currentPage: number;
+    itemsPerPage: number;
 }
 
 const initialState: StateUsers = {
     userList: [],
     fetching: false,
     error: null,
+    currentPage: 1,
+    itemsPerPage: 10,
 };
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async function () {
@@ -35,6 +39,13 @@ const usersSlice = createSlice({
         setUsers: (state, action: PayloadAction<t.User[]>) => {
             state.userList = action.payload;
             state.fetching = false;
+        },
+        setPage: (state, action: PayloadAction<number>) => {
+            state.currentPage = action.payload;
+        },
+        setItemsPerPage: (state, action: PayloadAction<number>) => {
+            state.itemsPerPage = action.payload;
+            state.currentPage = 1;
         },
         fetching: state => {
             state.fetching = true;
@@ -62,4 +73,5 @@ const usersSlice = createSlice({
     },
 });
 
+export const { setPage, setItemsPerPage } = usersSlice.actions;
 export default usersSlice.reducer;
