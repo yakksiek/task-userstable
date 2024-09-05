@@ -46,7 +46,7 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
     return (
         <div>
             {title && (
-                <Heading as='h2' $marginBottom={true}>
+                <Heading as='h2' $marginBottom={true} $textAlign='left'>
                     {title}
                 </Heading>
             )}

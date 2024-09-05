@@ -8,12 +8,12 @@ const StyledInput = styled.input`
     background-color: transparent;
     border: 1px solid var(--font-color-main);
     min-height: 2rem;
-    margin-top: 1rem;
     width: 100%;
     font-size: 0.75rem;
     padding: 0.5rem;
     color: var(--font-color-accent);
     outline: none;
+    border-radius: 0.5rem;
 
     &:focus {
         border-color: var(--font-color-accent);

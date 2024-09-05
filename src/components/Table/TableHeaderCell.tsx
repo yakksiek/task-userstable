@@ -34,8 +34,9 @@ const StyledHeader = styled.header`
     align-items: center;
     cursor: pointer;
     min-height: 2.5rem;
-    font-size: 1.175rem;
-    color: rgb(195 154 100);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 500;
 `;
 
 function TableHeaderCell({ cellData }: TableHeaderCellProps) {
@@ -78,12 +79,11 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
 
                     {showSort && !isAscSorting && !isDescSorting && (
                         <StyledSortButton>
-                            <TbSortDescending color='white' />
+                            <TbSortDescending />
                         </StyledSortButton>
                     )}
                 </StyledButtonContainer>
             </StyledHeader>
-            <hr />
             {filter && <Input filterKey={field} placeholder={`Filter for ${title}`} />}
         </StyledTableHeader>
     );

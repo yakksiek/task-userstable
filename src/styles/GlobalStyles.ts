@@ -2,10 +2,12 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --background-color-main: rgb(31, 41, 55); 
-    --background-color-main-2: rgb(78, 93, 115);
-    --font-color-main: rgb(229, 231, 235);
-    --font-color-accent: rgb(195, 154, 100);
+    --background-color-main: rgb(255, 255, 255); 
+    --background-color-main-2: rgb(250, 250, 250);
+    --font-color-main: rgb(0, 0, 0);
+    --font-color-accent: rgb(130, 130, 130);
+
+    --border-radius-outer: 0.25rem;
 }
 
 *,
