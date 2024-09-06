@@ -29,7 +29,6 @@ interface PaginationButtonProps {
 }
 
 function PaginationButton({ children, disabled, onClick }: PaginationButtonProps) {
-    console.log(disabled);
     return (
         <StyledPaginationButton onClick={onClick} disabled={disabled}>
             {children}
