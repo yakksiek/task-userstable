@@ -15,11 +15,11 @@ const StyledAppLayout = styled.div`
     background-color: aliceblue;
     border: var(--border);
     padding: 0.5rem;
-    border-radius: var(--border-radius-outer);
     background-color: var(--background-color-main);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 
     @media ${device.tablet} {
+        border-radius: var(--border-radius-outer);
         margin: 1rem auto;
         padding: 1rem;
         display: flex;
