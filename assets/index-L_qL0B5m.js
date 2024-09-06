@@ -86,7 +86,7 @@ Error generating stack: `+i.message+`
         visibility: hidden;
         pointer-events: none;
     }
-`;function aS({children:e,disabled:t,onClick:n}){return console.log(t),T.jsx(uS,{onClick:n,disabled:t,children:e})}const cS=X.div`
+`;function aS({children:e,disabled:t,onClick:n}){return T.jsx(uS,{onClick:n,disabled:t,children:e})}const cS=X.div`
     display: flex;
     align-items: center;
     min-height: 2rem;
