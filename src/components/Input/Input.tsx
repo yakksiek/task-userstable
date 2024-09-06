@@ -11,7 +11,7 @@ const StyledInput = styled.input`
     width: 100%;
     font-size: 0.875rem;
     padding: 0.5rem;
-    color: var(--font-color-accent);
+    color: var(--font-color-main);
     outline: none;
     border-radius: var(--border-radius-outer);
 
