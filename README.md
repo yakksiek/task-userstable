@@ -2,7 +2,7 @@
 
 # Task Users Table
 
-See the live version - <a href="https://yakksiek.github.io/task-userstable" target="_blank"></a>.
+See the live version - <a href="https://yakksiek.github.io/task-userstable" target="_blank">User table</a>.
 
 This project is a user table interface with features such as fetching user data from an API, filtering, sorting, and pagination. The project uses technologies like React, Redux Toolkit, Styled Components, and TypeScript.
 
