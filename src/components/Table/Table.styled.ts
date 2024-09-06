@@ -3,6 +3,9 @@ import styled from 'styled-components';
 export const StyledScrollableContainer = styled.div`
     overflow-x: auto;
     margin-top: 1rem;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
 `;
 
 export const StyledTable = styled.table`
