@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import * as h from '../../helpers';
 import * as t from '../../types';
 import Heading from '../Heading';
-import { StyledScrollableContainer, StyledTable, StyledTableWrapper } from './Table.styled';
+import { StyledResultMessage, StyledScrollableContainer, StyledTable, StyledTableWrapper } from './Table.styled';
 import TableBody from './TableBody';
 import TableHeader from './TableHeader';
 import Pagination from '../Pagination';
@@ -43,6 +43,9 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
         setPageHandler: handlePageChange,
     });
 
+    const isResultArrayEmpty = sortedUsers.length === 0;
+    const isQueryFilterValid = h.isAnyObjectValueTrue(filters);
+
     return (
         <StyledTableWrapper>
             {title && (
@@ -56,6 +59,9 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
                     <TableBody bodyData={currentItems} headerData={headerData} />
                 </StyledTable>
             </StyledScrollableContainer>
+            {isResultArrayEmpty && isQueryFilterValid && (
+                <StyledResultMessage>No results found for your query.</StyledResultMessage>
+            )}
             <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}

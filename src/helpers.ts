@@ -28,3 +28,7 @@ export function filterItems<T>(items: T[], filters: Partial<Record<keyof T, stri
         return true;
     });
 }
+
+export function isAnyObjectValueTrue(obj: Record<string, any>): boolean {
+    return Object.values(obj).some(value => value);
+}

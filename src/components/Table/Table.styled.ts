@@ -27,3 +27,7 @@ export const StyledTable = styled.table`
         padding: 8px;
     }
 `;
+
+export const StyledResultMessage = styled.p`
+    margin-top: 1rem;
+`;
