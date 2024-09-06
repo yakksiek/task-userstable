@@ -104,6 +104,9 @@ Error generating stack: `+i.message+`
 `;function pS({currentPage:e,totalPages:t,onNextPage:n,onPreviousPage:r,setPageHandler:o}){const i=[{onClick:()=>o(1),disabled:e===1,icon:T.jsx(nS,{})},{onClick:r,disabled:e===1,icon:T.jsx(tS,{})},{onClick:n,disabled:e===t,icon:T.jsx(eS,{})},{onClick:()=>o(t),disabled:e===t,icon:T.jsx(rS,{})}];return T.jsxs(cS,{children:[T.jsx(fS,{children:i.map((l,s)=>T.jsx(aS,{onClick:l.onClick,disabled:l.disabled,children:l.icon},s))}),T.jsxs(dS,{children:["Page ",e," of ",t]}),T.jsx(sS,{})]})}const hS=X.div`
     overflow-x: auto;
     margin-top: 1rem;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
 `,mS=X.table`
     width: 100%;
     border-collapse: collapse;
