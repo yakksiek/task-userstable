@@ -9,6 +9,7 @@ interface ErrorProps {
 }
 
 const SectionContainer = styled.div`
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -23,7 +24,7 @@ const StyledParagraphMessage = styled.p`
 function Error({ errorMessage, onClick, disableErrorBtn = false }: ErrorProps) {
     return (
         <SectionContainer>
-            <Heading as='h1' $marginBottom={true}>
+            <Heading as='h3' $marginBottom={true}>
                 {errorMessage}
             </Heading>
             <StyledParagraphMessage>Try again or try later</StyledParagraphMessage>

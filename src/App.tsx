@@ -8,14 +8,20 @@ import { userTableHeadersConfig } from './data/tableHeader';
 import { fetchUsers } from './features/users/usersSlice';
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks';
 import { device } from './styles/breakPoints';
+import Heading from './components/Heading';
 
 const StyledAppLayout = styled.div`
     max-width: 1400px;
+    background-color: aliceblue;
+    border: var(--border);
+    padding: 0.5rem;
+    border-radius: var(--border-radius-outer);
+    background-color: var(--background-color-main);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 
     @media ${device.tablet} {
-        height: 100vh;
         margin: 1rem auto;
-        padding: 0 1rem;
+        padding: 1rem;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -32,7 +38,10 @@ function App() {
 
     return (
         <StyledAppLayout>
-            {fetching && <Spinner />}
+            <Heading as='h2' $marginBottom={true} $textAlign='left'>
+                User list {fetching && <Spinner />}
+            </Heading>
+
             {error && !fetching && (
                 <Error errorMessage={error} onClick={() => dispatch(fetchUsers())} disableErrorBtn={fetching} />
             )}
@@ -40,7 +49,6 @@ function App() {
                 <Table
                     tableContent={userList}
                     headerData={userTableHeadersConfig}
-                    title='User list'
                     currentPage={currentPage}
                     itemsPerPage={itemsPerPage}
                 />

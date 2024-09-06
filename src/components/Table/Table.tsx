@@ -3,23 +3,22 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 
 import * as h from '../../helpers';
 import * as t from '../../types';
-import Heading from '../Heading';
-import { StyledResultMessage, StyledScrollableContainer, StyledTable, StyledTableWrapper } from './Table.styled';
-import TableBody from './TableBody';
-import TableHeader from './TableHeader';
-import Pagination from '../Pagination';
+
 import { setPage } from '../../features/users/usersSlice';
 import { usePagination } from '../../hooks/usePagination';
+import Pagination from '../Pagination';
+import { StyledResultMessage, StyledScrollableContainer, StyledTable } from './Table.styled';
+import TableBody from './TableBody';
+import TableHeader from './TableHeader';
 
 interface TableProps {
     tableContent: t.User[];
     headerData: t.HeaderCell[];
-    title?: string;
     currentPage: number;
     itemsPerPage: number;
 }
 
-function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: TableProps) {
+function Table({ tableContent, headerData, currentPage, itemsPerPage }: TableProps) {
     const { column: sortingColumn, order: sortingOrder } = useAppSelector(store => store.sorting);
     const filters = useAppSelector(store => store.filters);
     const dispatch = useAppDispatch();
@@ -47,29 +46,25 @@ function Table({ tableContent, headerData, title, currentPage, itemsPerPage }: T
     const isQueryFilterValid = h.isAnyObjectValueTrue(filters);
 
     return (
-        <StyledTableWrapper>
-            {title && (
-                <Heading as='h2' $marginBottom={true} $textAlign='left'>
-                    {title}
-                </Heading>
-            )}
+        <div>
             <StyledScrollableContainer>
                 <StyledTable>
                     <TableHeader headerData={headerData} />
                     <TableBody bodyData={currentItems} headerData={headerData} />
                 </StyledTable>
             </StyledScrollableContainer>
-            {isResultArrayEmpty && isQueryFilterValid && (
+            {isResultArrayEmpty && isQueryFilterValid ? (
                 <StyledResultMessage>No results found for your query.</StyledResultMessage>
+            ) : (
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onNextPage={handleNextPage}
+                    onPreviousPage={handlePreviousPage}
+                    setPageHandler={handlePageChange}
+                />
             )}
-            <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onNextPage={handleNextPage}
-                onPreviousPage={handlePreviousPage}
-                setPageHandler={handlePageChange}
-            />
-        </StyledTableWrapper>
+        </div>
     );
 }
 

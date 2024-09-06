@@ -8,7 +8,9 @@ const GlobalStyles = createGlobalStyle`
     --font-color-accent: rgb(130, 130, 130);
 
     --border-radius-outer: 0.5rem;
-    --border: 1.25px solid var(--background-color-main-2)
+    --border: 1.25px solid var(--background-color-main-2);
+
+    --cell-inner-padding: 8px;
 }
 
 *,

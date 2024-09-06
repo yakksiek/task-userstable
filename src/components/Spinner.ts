@@ -10,8 +10,8 @@ const rotation = keyframes`
 `;
 
 const Spinner = styled.div`
-    width: 35px;
-    height: 35px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--font-color-main);
     border-bottom-color: transparent;
     border-radius: 50%;
