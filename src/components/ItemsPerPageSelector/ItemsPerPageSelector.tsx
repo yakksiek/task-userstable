@@ -11,9 +11,10 @@ const StyledWrapper = styled.div`
 const StyledSelect = styled.select`
     border: 1px solid var(--font-color-accent);
     border-radius: 100vh;
-    background-color: transparent;
+    background-color: var(--background-color-main);
     color: var(--font-color-accent);
     transition: olor 0.3s ease, border-color 0.3s ease;
+    padding-right: 0.25rem;
 
     &:hover {
         cursor: pointer;
