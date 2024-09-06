@@ -8,6 +8,7 @@ import { useAppSelector } from '../../hooks/reduxHooks';
 import { setSorting } from '../../features/sorting/sortingSlice';
 import * as t from '../../types';
 import Input from '../Input';
+import { device } from '../../styles/breakPoints';
 
 interface TableHeaderCellProps {
     cellData: t.HeaderCell;
@@ -27,6 +28,12 @@ const StyledSortButton = styled.button`
 
     &.active {
         color: var(--font-color-main);
+    }
+
+    &.hover-btn {
+        @media ${device.mobile} {
+            display: none;
+        }
     }
 `;
 
@@ -84,7 +91,7 @@ function TableHeaderCell({ cellData }: TableHeaderCellProps) {
                     )}
 
                     {showSort && !isAscSorting && !isDescSorting && (
-                        <StyledSortButton>
+                        <StyledSortButton className='hover-btn'>
                             <IoMdArrowRoundDown />
                         </StyledSortButton>
                     )}
