@@ -26,11 +26,13 @@ interface PaginationButtonProps {
     children: React.ReactNode;
     onClick: () => void;
     disabled: boolean;
+    ariaLabel?: string;
+    testId?: string;
 }
 
-function PaginationButton({ children, disabled, onClick }: PaginationButtonProps) {
+function PaginationButton({ children, disabled, onClick, ariaLabel, testId }: PaginationButtonProps) {
     return (
-        <StyledPaginationButton onClick={onClick} disabled={disabled}>
+        <StyledPaginationButton onClick={onClick} disabled={disabled} aria-label={ariaLabel} data-testid={testId}>
             {children}
         </StyledPaginationButton>
     );

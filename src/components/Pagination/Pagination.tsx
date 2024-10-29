@@ -74,8 +74,8 @@ function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPa
                         key={index}
                         onClick={button.onClick}
                         disabled={button.disabled}
-                        aria-label={button.label}
-                        data-testid={button.testId}
+                        ariaLabel={button.label}
+                        testId={button.testId}
                     >
                         {button.icon}
                     </PaginationButton>
