@@ -38,6 +38,11 @@ This project is a user table interface with features such as fetching user data 
 -   The UI is styled using Styled Components, allowing scoped and dynamic styling.
 -   It also leverages CSS variables for consistent theming and maintainable styles.
 
+### 7. Testing with Jest and React Testing Library
+
+-   **Jest** and **React Testing Library** are set up to enable unit and integration testing for the application.
+-   Tests cover key components, Redux actions, and asynchronous operations like fetching and displaying user data.
+
 ### Technologies Used
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -47,6 +52,9 @@ This project is a user table interface with features such as fetching user data 
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
+![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
 ## Installation
 
