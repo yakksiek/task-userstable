@@ -10,7 +10,8 @@
         "dev": "vite --host",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "test": "jest"
     },
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.7",

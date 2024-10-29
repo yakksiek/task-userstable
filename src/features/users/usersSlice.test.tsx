@@ -1,22 +1,22 @@
-import { http, HttpResponse, delay } from 'msw';
-import { setupServer } from 'msw/node';
-import { fireEvent, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { screen } from '@testing-library/react';
+import axios from 'axios';
 
+import App from '../../App';
 import { User } from '../../types';
 import { renderWithProviders } from '../../utils/test-utils';
-import App from '../../App';
 
 const data: User[] = [
     {
         id: 1,
-        name: 'Leanne Graham',
+        name: 'Zenon Zenonkiewicz',
         username: 'Bret',
         email: 'Sincere@april.biz',
         address: {
             street: 'Kulas Light',
             suite: 'Apt. 556',
             city: 'Gwenborough',
-            zipcode: '92998-3874',
+            zipcode: '3212-12321',
             geo: {
                 lat: '-37.3159',
                 lng: '81.1496',
@@ -30,51 +30,38 @@ const data: User[] = [
             bs: 'harness real-time e-markets',
         },
     },
-    {
-        id: 2,
-        name: 'Ervin Howell',
-        username: 'Antonette',
-        email: 'Shanna@melissa.tv',
-        address: {
-            street: 'Victor Plains',
-            suite: 'Suite 879',
-            city: 'Wisokyburgh',
-            zipcode: '90566-7771',
-            geo: {
-                lat: '-43.9509',
-                lng: '-34.4618',
-            },
-        },
-        phone: '010-692-6593 x09125',
-        website: 'anastasia.net',
-        company: {
-            name: 'Deckow-Crist',
-            catchPhrase: 'Proactive didactic contingency',
-            bs: 'synergize scalable supply-chains',
-        },
-    },
 ];
 
-export const handlers = [
-    http.get('/api/user', async () => {
-        await delay(150);
-        return HttpResponse.json(data);
-    }),
-];
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-const server = setupServer(...handlers);
+test('shows spinner while loading and displays user data after loading', async () => {
+    mockedAxios.get.mockImplementationOnce(() => new Promise(resolve => setTimeout(() => resolve({ data }), 1000)));
 
-// Enable API mocking before tests.
-beforeAll(() => server.listen());
+    jest.useFakeTimers();
 
-// Reset any runtime request handlers we may add during the tests.
-afterEach(() => server.resetHandlers());
-
-// Disable API mocking after the tests are done.
-afterAll(() => server.close());
-
-test('fetches & receives users automatically after loading the page', () => {
     renderWithProviders(<App />);
 
-    expect(screen.getByText(/users list/i)).toBeInTheDocument();
+    expect(screen.getByText(/user list/i)).toBeInTheDocument();
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+
+    jest.advanceTimersByTime(1000);
+    await screen.findByText(/Zenon Zenonkiewicz/i);
+
+    expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
+
+    jest.useRealTimers();
+});
+
+test('handles API failure correctly and displays an error message', async () => {
+    mockedAxios.get.mockRejectedValueOnce({
+        response: {
+            status: 500,
+            data: { message: 'Internal Server Error' },
+        },
+    });
+
+    renderWithProviders(<App />);
+    expect(screen.getByText(/user list/i)).toBeInTheDocument();
+    expect(await screen.findByText(/An unknown error occurred/i)).toBeInTheDocument();
 });

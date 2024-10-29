@@ -39,7 +39,7 @@ function App() {
     return (
         <StyledAppLayout>
             <Heading as='h2' $marginBottom={true} $textAlign='left'>
-                User list {fetching && <Spinner />}
+                User list {fetching && <Spinner data-testid='spinner' />}
             </Heading>
 
             {error && !fetching && (

@@ -29,7 +29,7 @@ function Table({ tableContent, headerData, currentPage, itemsPerPage }: TablePro
 
     const sortedUsers = useMemo(() => {
         return h.sortItems(filteredUsers, sortingColumn, sortingOrder);
-    }, [filteredUsers, tableContent, sortingColumn, sortingOrder]);
+    }, [filteredUsers, sortingColumn, sortingOrder]);
 
     const handlePageChange = (newPageNumber: number) => {
         dispatch(setPage(newPageNumber));
