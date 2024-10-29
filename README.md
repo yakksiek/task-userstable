@@ -43,6 +43,79 @@ This project is a user table interface with features such as fetching user data 
 -   **Jest** and **React Testing Library** are set up to enable unit and integration testing for the application.
 -   Tests cover key components, Redux actions, and asynchronous operations like fetching and displaying user data.
 
+Example
+
+```javascript
+jest.mock('axios');
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+test('shows spinner while loading and displays user data after loading', async () => {
+    mockedAxios.get.mockImplementationOnce(() => new Promise(resolve => setTimeout(() => resolve({ data }), 1000)));
+
+    jest.useFakeTimers();
+
+    renderWithProviders(<App />);
+
+    expect(screen.getByText(/user list/i)).toBeInTheDocument();
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+
+    jest.advanceTimersByTime(1000);
+    await screen.findByText(/Zenon Zenonkiewicz/i);
+
+    expect(screen.queryByTestId('spinner')).not.toBeInTheDocument();
+
+    jest.useRealTimers();
+});
+
+test('handles API failure correctly and displays an error message', async () => {
+    mockedAxios.get.mockRejectedValueOnce({
+        response: {
+            status: 500,
+            data: { message: 'Internal Server Error' },
+        },
+    });
+
+    renderWithProviders(<App />);
+    expect(screen.getByText(/user list/i)).toBeInTheDocument();
+    expect(await screen.findByText(/An unknown error occurred/i)).toBeInTheDocument();
+});
+
+test('displays correct number of users after changing items per page', async () => {
+    const mockUsers: t.User[] = [
+        // mocked users
+    ]
+
+    mockedAxios.get.mockResolvedValue({ data: mockUsers });
+
+    const { store } = renderWithProviders(<App />);
+
+    await waitFor(() => {
+        expect(screen.getByText(/Alice Thompson/i)).toBeInTheDocument();
+    });
+
+    const itemsPerPageSelect = screen.getByLabelText(/Items per page:/i);
+    fireEvent.change(itemsPerPageSelect, { target: { value: '3' } });
+
+    await waitFor(() => {
+        const userRows = screen.getAllByRole('row');
+        expect(userRows).toHaveLength(4); // 1 header row + 3 user rows
+    });
+
+    expect(store.getState().usersData.itemsPerPage).toBe(3);
+
+    const nextPageButton = screen.getByTestId('next-page-button');
+    fireEvent.click(nextPageButton);
+
+    store.dispatch(setPage(2));
+
+    await waitFor(() => {
+        expect(screen.getByText(/Diana Prince/i)).toBeInTheDocument();
+        screen.debug();
+        expect(screen.queryByText(/Alice Thompson/i)).not.toBeInTheDocument();
+    });
+});
+```
+
 ### Technologies Used
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -82,10 +155,6 @@ This project is a user table interface with features such as fetching user data 
     npm run dev
     ```
 
-## Possible future features
-
--   **writing tests**
-
 &nbsp;
 
 ## Feel free to contact me
@@ -93,3 +162,7 @@ This project is a user table interface with features such as fetching user data 
 Find me on [LinkedIn ](https://www.linkedin.com/in/marcin-kulbicki-426817a4/) or [Instagram](https://www.instagram.com/yakksiek/)
 
 &nbsp;
+
+```
+
+```
