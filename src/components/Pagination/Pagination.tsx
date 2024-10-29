@@ -40,21 +40,29 @@ function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPa
             onClick: () => setPageHandler(1),
             disabled: currentPage === 1,
             icon: <MdOutlineFirstPage />,
+            label: 'Go to first page',
+            testId: 'first-page-button',
         },
         {
             onClick: onPreviousPage,
             disabled: currentPage === 1,
             icon: <GrFormPrevious />,
+            label: 'Go to previous page',
+            testId: 'previous-page-button',
         },
         {
             onClick: onNextPage,
             disabled: currentPage === totalPages,
             icon: <GrFormNext />,
+            label: 'Go to next page',
+            testId: 'next-page-button',
         },
         {
             onClick: () => setPageHandler(totalPages),
             disabled: currentPage === totalPages,
             icon: <MdOutlineLastPage />,
+            label: 'Go to last page',
+            testId: 'last-page-button',
         },
     ];
 
@@ -62,7 +70,13 @@ function Pagination({ currentPage, totalPages, onNextPage, onPreviousPage, setPa
         <StyledPaginationContainer>
             <StyledActionButtonsContainer>
                 {buttons.map((button, index) => (
-                    <PaginationButton key={index} onClick={button.onClick} disabled={button.disabled}>
+                    <PaginationButton
+                        key={index}
+                        onClick={button.onClick}
+                        disabled={button.disabled}
+                        aria-label={button.label}
+                        data-testid={button.testId}
+                    >
                         {button.icon}
                     </PaginationButton>
                 ))}
