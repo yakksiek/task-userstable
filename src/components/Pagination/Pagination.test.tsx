@@ -61,7 +61,6 @@ describe('Pagination', () => {
     });
 
     test('correctly changes items per page', () => {
-        // const store = setupStore(); // Create a store for testing with initial values
         const { store } = renderWithProviders(
             <Pagination
                 currentPage={1}
